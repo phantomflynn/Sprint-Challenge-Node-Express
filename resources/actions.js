@@ -29,4 +29,13 @@ router.post('/', (req, res) => {
         // .catch(err => res.status(500).json({ error: "Cannot post this action." }))
 })
 
+// update an action 
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+  dbActions.update(id, updates) 
+    .then(updatedAction => res.json(updatedAction)) // returns the updated action object
+    .catch(err => res.status(500).json({ error: "Cannot update this action." }))
+})
+
 module.exports = router;
