@@ -26,3 +26,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.projectAction {
+  border: 2px solid black;
+  margin: 1%;
+}
+
+.subAction {
+  display: flex;
+  margin: 1%;
+}
+
+.subAction-header {
+  font-weight: 600;
+  margin-right: 5px;
+}

@@ -22,7 +22,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Projects projects={this.state.projects}/>
+        <div>
+          <button>n/a</button>
+        </div>
+        {this.state.projects.map(project => <Projects project={project} key={project.id} />)}
+        {/* <Projects projects={this.state.projects}/> */}
       </div>
     );
   }
