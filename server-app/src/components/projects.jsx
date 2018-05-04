@@ -61,7 +61,7 @@ export default class Projects extends Component {
                     <p>{action.notes}</p>
                   </div>
                   <div className="ActionStatus subAction">
-                    <div className="subAction">
+                    <div className="subAction" style={{ marginLeft: 0 }}>
                       <p className="subAction-header">status: </p>
                       <p>{action.completed ? "completed" : "pending"}</p>
                     </div>
