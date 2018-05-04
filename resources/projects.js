@@ -25,4 +25,13 @@ router.get('/:id/actions', (req, res) => {
     .catch(err => res.status(500).json({ error: "Cannot retrieve any actions with the provided ID." }))
 })
 
+// add a new project
+router.post('/', (req, res) => {
+  // name and description are required .. id, completed, actions are added automatically
+  const newProject = req.body; 
+  dbProjects.insert(newProject)
+    .then(response => res.json(response)) // returns object of new project
+    .catch(err => res.status(500).json({ error: "Cannot add this project." }))
+})
+
 module.exports = router;
