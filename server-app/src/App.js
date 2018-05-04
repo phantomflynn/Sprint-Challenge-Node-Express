@@ -26,6 +26,7 @@ class App extends Component {
       axios.post('http://localhost:5000/projects', { name: projectName, description: projectDescription })
         .then(response => this.fetchProjects())
         .catch(error => console.log(error))
+    this.setState({ projectName: "", projectDescription: "" })
   }
 
   render() {
