@@ -34,4 +34,13 @@ router.post('/', (req, res) => {
     .catch(err => res.status(500).json({ error: "Cannot add this project." }))
 })
 
+// update an existing project
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const updatedInfo = req.body;
+  dbProjects.update(id, updatedInfo)
+    .then(updatedProject => res.json(updatedProject)) // returns updated project object
+    .catch(err => res.status(500).json({ error: "Cannot update this project with the provided ID." }))
+})
+
 module.exports = router;
