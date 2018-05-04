@@ -7,8 +7,6 @@ const server = express();
 server.use(express.json());
 server.use(helmet());
 
-server.get('/', (req, res) => res.send('server is working'));
-
 server.use('/actions', actionRoutes);
 server.use('/projects', projectRoutes);
 
