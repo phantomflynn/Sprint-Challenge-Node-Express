@@ -6,13 +6,26 @@ import Projects from './components/projects';
 
 class App extends Component {
   state = {
-    projects: []
+    projects: [],
+    displayNewProjectInput: false,
+    projectName: "",
+    projectDescription: ""
   };
 
-  componentDidMount() {
+  componentDidMount() { this.fetchProjects() }
+
+  fetchProjects = () => {
     axios.get('http://localhost:5000/projects')
       .then(response => this.setState({ projects: response.data }))
       .catch(error => console.log('encountered an error fetching projects'))
+  }
+
+  handleNewProject = () => {
+    const { projectName, projectDescription } = this.state;
+    if (projectName !== "" && projectDescription !== "") 
+      axios.post('http://localhost:5000/projects', { name: projectName, description: projectDescription })
+        .then(response => this.fetchProjects())
+        .catch(error => console.log(error))
   }
 
   render() {
@@ -22,11 +35,32 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <div>
-          <button>n/a</button>
-        </div>
-        {this.state.projects.map(project => <Projects project={project} key={project.id} />)}
-        {/* <Projects projects={this.state.projects}/> */}
+        <button 
+          onClick={() => this.setState({ displayNewProjectInput: !this.state.displayNewProjectInput })}
+          >add project
+        </button>
+        {this.state.displayNewProjectInput ? (
+          <div>
+            <input 
+              placeholder="project name"
+              value={this.state.projectName}
+              onChange={event => this.setState({ projectName: event.target.value })}
+            />
+            <input 
+              placeholder="project descriptions"
+              value={this.state.projectDescription}
+              onChange={event => this.setState({ projectDescription: event.target.value })}
+            />
+            <button onClick={() => this.handleNewProject()}>submit</button>
+          </div>
+        ) : null}
+        {this.state.projects.map(project => (
+          <Projects 
+            key={project.id}
+            project={project} 
+            fetchProjects={() => this.fetchProjects()}
+          />
+        ))}
       </div>
     );
   }
