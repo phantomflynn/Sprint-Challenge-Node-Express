@@ -43,4 +43,12 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({ error: "Cannot update this project with the provided ID." }))
 })
 
+// delete a project
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  dbProjects.remove(id)
+    .then(response => res.json(response)) // returns 1 for success, 0 for failure
+    .catch(err => res.status(500).json({ error: "Cannot remove this project with the provided ID." }))
+})
+
 module.exports = router;
