@@ -26,7 +26,7 @@ class App extends Component {
       axios.post('http://localhost:5000/projects', { name: projectName, description: projectDescription })
         .then(response => this.fetchProjects())
         .catch(error => console.log(error))
-    this.setState({ projectName: "", projectDescription: "" })
+    this.setState({ projectName: "", projectDescription: "", displayNewProjectInput: false })
   }
 
   render() {
@@ -40,6 +40,7 @@ class App extends Component {
           onClick={() => this.setState({ displayNewProjectInput: !this.state.displayNewProjectInput })}
           >add project
         </button>
+        
         {this.state.displayNewProjectInput ? (
           <div>
             <input 
@@ -55,6 +56,7 @@ class App extends Component {
             <button onClick={() => this.handleNewProject()}>submit</button>
           </div>
         ) : null}
+
         {this.state.projects.map(project => (
           <Projects 
             key={project.id}
@@ -62,6 +64,7 @@ class App extends Component {
             fetchProjects={() => this.fetchProjects()}
           />
         ))}
+
       </div>
     );
   }

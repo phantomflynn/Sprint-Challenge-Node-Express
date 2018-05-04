@@ -21,15 +21,20 @@ export default class Projects extends Component {
       .catch(error => console.log(error))
   }
 
+  handleProjectDelete = id => {
+    axios.delete(`http://localhost:5000/projects/${id}`)
+      .then(response => this.props.fetchProjects())
+      .catch(error => console.log(error))
+  }
+
   render() {
     const { project } = this.props;
     return (
       <div>
         <h2>{project.name}</h2>
         <p>{project.description}</p>
-        <button onClick={() => this.setState({ showActions: !this.state.showActions })}>
-          project actions
-        </button>
+        <button onClick={() => this.setState({ showActions: !this.state.showActions })}>project actions</button>
+        <button onClick={() => this.handleProjectDelete(project.id)}>delete project</button>
         {this.state.showActions ? (
           <div>
             {this.state.actions.map(action => (
