@@ -38,4 +38,12 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({ error: "Cannot update this action." }))
 })
 
+// delete an action
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  dbActions.remove(id)
+    .then(response => res.json(response)) // returns 1 for success, 0 for failure
+    .catch(err => res.status(500).json({ error: "Cannot delete this action with the provided ID." }))
+})
+
 module.exports = router;
