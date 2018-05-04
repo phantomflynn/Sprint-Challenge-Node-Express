@@ -4,8 +4,7 @@ import axios from 'axios';
 export default class Projects extends Component {
   state = {
     showActions: false,
-    actions: [],
-    updatedAction: ""
+    actions: []
   };
 
   componentDidMount() { this.fetchActions() }
@@ -43,10 +42,16 @@ export default class Projects extends Component {
                   <p className="subAction-header">notes: </p>
                   <p>{action.notes}</p>
                 </div>
-                <div className="subAction">
-                  <p className="subAction-header">status: </p>
-                  <p>{action.completed ? "completed" : "pending"}</p>
-                  <button onClick={() => this.handleFinishedAction(action.id)}>mark completed</button>
+                <div className="ActionStatus subAction">
+                  <div className="subAction">
+                    <p className="subAction-header">status: </p>
+                    <p>{action.completed ? "completed" : "pending"}</p>
+                  </div>
+                  <div className="ActionStatus__button">
+                    <button onClick={() => this.handleFinishedAction(action.id)}>
+                      mark completed
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
