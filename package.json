@@ -1,0 +1,18 @@
+{
+  "name": "Sprint-Challenge-Node-Express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/phantomflynn/Sprint-Challenge-Node-Express.git",
+  "author": "jeffrey <jeffreyneilflynn@gmail.com>",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "helmet": "^3.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
