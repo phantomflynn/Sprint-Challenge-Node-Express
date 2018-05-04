@@ -26,7 +26,6 @@ router.post('/', (req, res) => {
       dbActions.insert(req.body)
         .then(action => res.json(action)))
         .catch(err => res.status(500).json({ error: `Project ID ${project_id} does not exist.` }))
-        // .catch(err => res.status(500).json({ error: "Cannot post this action." }))
 })
 
 // update an action 
