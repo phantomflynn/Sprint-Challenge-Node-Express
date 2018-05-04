@@ -4,12 +4,21 @@ import axios from 'axios';
 export default class Projects extends Component {
   state = {
     showActions: false,
-    actions: []
+    actions: [],
+    updatedAction: ""
   };
 
-  componentDidMount() {
+  componentDidMount() { this.fetchActions() }
+
+  fetchActions = () => {
     axios.get(`http://localhost:5000/projects/${this.props.project.id}/actions`)
       .then(actions => this.setState({ actions: actions.data }))
+      .catch(error => console.log(error))
+  }
+
+  handleFinishedAction = id => {
+    axios.put(`http://localhost:5000/actions/${id}`, { completed: true })
+      .then(response => this.fetchActions())
       .catch(error => console.log(error))
   }
 
@@ -25,7 +34,7 @@ export default class Projects extends Component {
         {this.state.showActions ? (
           <div>
             {this.state.actions.map(action => (
-              <div className="projectAction">
+              <div className="projectAction" key={action.id}>
                 <div className="subAction">
                   <p className="subAction-header">description: </p>
                   <p>{action.description}</p>
@@ -37,6 +46,7 @@ export default class Projects extends Component {
                 <div className="subAction">
                   <p className="subAction-header">status: </p>
                   <p>{action.completed ? "completed" : "pending"}</p>
+                  <button onClick={() => this.handleFinishedAction(action.id)}>mark completed</button>
                 </div>
               </div>
             ))}
