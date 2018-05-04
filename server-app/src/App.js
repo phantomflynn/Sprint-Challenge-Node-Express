@@ -38,9 +38,10 @@ class App extends Component {
         </header>
         <button 
           onClick={() => this.setState({ displayNewProjectInput: !this.state.displayNewProjectInput })}
+          className="addProject-button"
           >add project
         </button>
-        
+
         {this.state.displayNewProjectInput ? (
           <div>
             <input 

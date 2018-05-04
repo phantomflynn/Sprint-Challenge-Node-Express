@@ -36,7 +36,7 @@ export default class Projects extends Component {
   render() {
     const { project } = this.props;
     return (
-      <div>
+      <div className="Project">
         <h2>{project.name}</h2>
         <p>{project.description}</p>
         <button onClick={() => this.setState({ showActions: !this.state.showActions })}>project actions</button>

@@ -27,6 +27,16 @@
   to { transform: rotate(360deg); }
 }
 
+.addProject-button {
+  margin-top: 2%;
+}
+
+.Project {
+  border: 1px dotted black;
+  margin: 1%;
+  padding-bottom: 10px;
+}
+
 .projectAction {
   border: 2px solid black;
   margin: 1%;
